@@ -1,0 +1,5 @@
+id,amount,category
+A001,100.50,research
+A002,42.00,operations
+,12.00,research
+A004,invalid,operations
