@@ -2,7 +2,9 @@
 
 [![Python checks](https://github.com/DrKaiqueDias/csv-quality-audit/actions/workflows/tests.yml/badge.svg)](https://github.com/DrKaiqueDias/csv-quality-audit/actions)
 
-A streaming, dependency-free CSV quality gate. Detect missing required values, invalid numeric fields and inconsistent record widths before data enters another workflow.
+A Python tool for checking a CSV before using it elsewhere. It flags missing required values, invalid numbers and rows with the wrong number of fields.
+
+The focus is straightforward: find structural problems and return a report that is easy to act on. The file is read row by row, so it does not need to fit in memory.
 
 ## Try it
 
@@ -41,12 +43,13 @@ Requires **Python 3.11+**. Uses only the standard library; no installation or AP
 python -m unittest discover -v
 ```
 
-CI runs tests on Python 3.11, 3.12 and 3.13. Examples are synthetic. This is a compact portfolio project, not a claim of production deployment.
+Tests run on Python 3.11, 3.12 and 3.13 through GitHub Actions. The sample data is synthetic.
 
 ## Design choices
 
-Small pure functions hold the core logic; the CLI handles files, JSON output and exit codes. Invalid inputs fail explicitly instead of silently changing the data.
+The audit keeps counts instead of storing rows. Reports show which columns need attention without copying their cell contents. Input files are left unchanged.
 
 ## License
 
 MIT. Maintained by [Kaique Dias](https://github.com/DrKaiqueDias).
+
